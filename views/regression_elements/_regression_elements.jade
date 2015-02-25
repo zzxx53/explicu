@@ -1,0 +1,20 @@
+head
+
+div.featurette-light(align="center")
+  span
+    h1(style="color-blue" align="center")
+      include ../_explicu_name.jade
+    br
+  br
+  h1 Which risk factors are important for predicting mortality? 
+  h3 We used logistic regression to find out, and show the results below.
+
+div.featurette(align="center")  
+
+  include _regression_bargraph.jade
+
+br
+hr 
+
+div.featurette(align="center")
+  include _regression_cv.jade

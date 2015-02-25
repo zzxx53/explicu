@@ -1,0 +1,20 @@
+head
+
+div.featurette-light(align="center")
+  span
+    h1(style="color-blue" align="center") 
+      include ../_explicu_name.jade
+    br
+  span
+    h1(align="center") Clustering Results
+
+
+div.featurette(align="center")
+  h1 Clustering Analysis with Parallel Coordinates
+  h3 How to interact with this visualization:
+  p This is an interactive parallel coordinate plot showing multiple features of the dataset. Data lines in cluster one are in orange and data lines in cluster two are in blue.
+  p In order to filter a subset of the data, move mouse over an axis and click and drag to form a rectangular slider. Then either move it along the axis, make it smaller or larger, or simply get rid of it by clicking on the axis above or below the filter. You can also create multiple filters at one time to narrow the search to a specific subset of the data. The tabular data below the plot adjusts with the filters you select.
+  hr
+  include cluster_viz/parallel_coords_with_table.html
+br
+br

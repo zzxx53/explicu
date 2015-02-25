@@ -1,0 +1,20 @@
+// table for showing the logistic regression results
+
+h2 Positive and negative predictors for mortality - regression coefficients
+p The graph below shows the coefficients obtained for each of 31 Elixhauser comorbidities, which were used as predictive features in multivariate logistic regression. 
+p <strong>How to read the graph</strong>: the greater the magnitude of the bar, the more significant. A positive direction indicates that the variable is associated with <em>increased</em> mortality risk. A negative direction indicates that the variable is associated with <em>decreased</em> mortality risk. 
+<div id="regression_bargraph_coefficient" style="height:450px"></div>
+script
+  include morris_regression_bargraph_coefficient.js
+
+br
+hr
+br
+
+h2 Predictors for mortality - regression P-values
+p The graph below shows the p-values obtained for each of 31 Elixhauser comorbidities, which were used as predictive features in multivariate logistic regression. 
+p <strong>How to read the graph</strong>: Higher values are <em>more</em> significant predictors of mortality.
+<div id="regression_bargraph_pvalue" style="height:450px"></div>
+script
+  include morris_regression_bargraph_pvalue.js
+
