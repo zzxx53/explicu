@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var mongo_conn="mongodb://localhost:27017/explicu";
+//var mongo_conn="mongodb://localhost:27017/explicu";
+var mongo_conn="mongodb://readonly:readonly@ds049631.mongolab.com:49631/heroku_app33408747";
 var MongoClient = require('mongodb').MongoClient;
 
 /* GET home page. */
@@ -115,7 +116,7 @@ router.post('/api/filter',function(req,res){
       var query_obj={};
       build_query(filters,filter_state,query_obj);
       var ret={};
-      db.collection('patients').find({}).count(function(err, count) {
+      db.collection('patients').find(query_obj).count(function(err, count) {
         if(err) { 
             console.log(err); 
             res.send(JSON.stringify([]));  
