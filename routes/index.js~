@@ -36,7 +36,7 @@ router.get('/contact', function(req, res) {
 
 /* Lifan's edit; alternate patient filter page. */
 router.get('/filter', function(req, res) {
-  res.render('filter', { title: 'explICU' , menu: 'Filter' });
+  res.render('filter', { title: 'explICU' , menu: 'Visualization' });
 });
 
 /* API for fetching data from MongoDB*/
@@ -420,4 +420,25 @@ router.get('/api/elixhauser/:pid',function(req,res){
       })
     })
 })
+
+router.post('/api/predict',function(req,res){
+    var predictors=JSON.parse(req.body.predictors);
+    MongoClient.connect(mongo_conn, function(err, db) {
+      if(err) { 
+        console.log(err); 
+        res.send(JSON.stringify([])); 
+        return;  
+      }
+      db.collection('patients').findOne({'pid':predictors['pid']},function(err,pt){
+          var output=0
+          for (var i=0;i<elixhauser.length;i++){
+            if (pt[elixhauser[i]]==='Yes'){
+                output+=coef[elixhauser[i]];
+            }
+          }
+          res.send(JSON.stringify(output));  
+      })
+    })
+})
+
 module.exports = router;

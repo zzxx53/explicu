@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//var mongo_conn="mongodb://localhost:27017/explicu";
-var mongo_conn="mongodb://readonly:readonly@ds049631.mongolab.com:49631/heroku_app33408747";
+var mongo_conn="mongodb://localhost:27017/explicu";
 var MongoClient = require('mongodb').MongoClient;
 
 /* GET home page. */
@@ -420,4 +419,25 @@ router.get('/api/elixhauser/:pid',function(req,res){
       })
     })
 })
+
+router.post('/api/predict',function(req,res){
+    var predictors=JSON.parse(req.body.predictors);
+    MongoClient.connect(mongo_conn, function(err, db) {
+      if(err) { 
+        console.log(err); 
+        res.send(JSON.stringify([])); 
+        return;  
+      }
+      db.collection('patients').findOne({'pid':predictors['pid']},function(err,pt){
+          var output=0
+          for (var i=0;i<elixhauser.length;i++){
+            if (pt[elixhauser[i]]==='Yes'){
+                output+=coef[elixhauser[i]];
+            }
+          }
+          res.send(JSON.stringify(output));  
+      })
+    })
+})
+
 module.exports = router;
